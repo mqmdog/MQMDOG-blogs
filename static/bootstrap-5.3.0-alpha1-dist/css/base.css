@@ -1,0 +1,170 @@
+/* ===== 全局基础样式 ===== */
+body {
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ee 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                 "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+    color: #333;
+}
+
+/* ===== 导航栏 ===== */
+.site-header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+}
+
+.search-input {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    width: 200px;
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+    color: white;
+    box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.1);
+    width: 260px;
+}
+
+.search-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* ===== 主内容区 ===== */
+.content-wrapper {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06);
+    padding: 2rem;
+    min-height: 60vh;
+}
+
+/* ===== 博客卡片 ===== */
+.blog-card {
+    border-radius: 10px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    overflow: hidden;
+}
+
+.blog-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.blog-title {
+    transition: color 0.2s ease;
+}
+
+.blog-title:hover {
+    color: #0d6efd !important;
+}
+
+/* ===== 文章详情 ===== */
+.article-content {
+    font-size: 1rem;
+    line-height: 1.85;
+    color: #374151;
+}
+
+.article-content p {
+    margin-bottom: 1rem;
+}
+
+.article-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 1rem 0;
+}
+
+.article-content pre {
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+}
+
+.article-content code {
+    font-size: 0.9em;
+}
+
+.article-content blockquote {
+    border-left: 4px solid #0d6efd;
+    padding: 0.5rem 1rem;
+    margin: 1rem 0;
+    background: #f8f9fa;
+    border-radius: 0 6px 6px 0;
+}
+
+.article-content h2, .article-content h3, .article-content h4 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+/* ===== 评论 ===== */
+.comment-item {
+    background: #f9fafb;
+    border: 1px solid #f0f2f5;
+    transition: background 0.2s ease;
+}
+
+.comment-item:hover {
+    background: #f0f4ff;
+}
+
+/* ===== 分页 ===== */
+.pagination .page-link {
+    border: none;
+    color: #6b7280;
+    padding: 0.5rem 0.85rem;
+    margin: 0 2px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.pagination .page-link:hover {
+    background: #e5e7eb;
+    color: #111827;
+}
+
+.pagination .page-item.active .page-link {
+    background: #0d6efd;
+    color: white;
+    box-shadow: 0 2px 6px rgba(13, 110, 253, 0.3);
+}
+
+/* ===== 表单 ===== */
+.form-control:focus, .form-select:focus {
+    border-color: #86b7fe;
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.15);
+}
+
+.input-group-text {
+    border-color: #dee2e6;
+}
+
+/* ===== 页脚 ===== */
+.site-footer {
+    background: white;
+    border-top: 1px solid #e5e7eb;
+    padding: 1.25rem 0;
+    margin-top: auto;
+}
+
+/* ===== 响应式 ===== */
+@media (max-width: 768px) {
+    .content-wrapper {
+        padding: 1.25rem;
+        border-radius: 8px;
+    }
+
+    .search-input, .search-input:focus {
+        width: 100%;
+    }
+}

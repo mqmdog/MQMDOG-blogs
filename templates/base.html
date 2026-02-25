@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}XHC的博客{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'bootstrap-5.3.0-alpha1-dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="{% static 'bootstrap-5.3.0-alpha1-dist/css/base.css' %}">
+    <script src="{% static 'bootstrap-5.3.0-alpha1-dist/js/bootstrap.bundle.min.js' %}"></script>
+    {% block head %}{% endblock %}
+</head>
+<body>
+
+<!-- 导航栏 -->
+<nav class="navbar navbar-expand-lg sticky-top navbar-dark site-header">
+    <div class="container">
+        <!-- Logo -->
+        <a class="navbar-brand d-flex align-items-center" href="/">
+            <img src="{% static 'image/logo.png' %}" alt="Logo" width="40" height="40" class="rounded-circle me-2">
+            <div>
+                <span class="fw-bold">XHC的博客</span>
+                <small class="d-block text-light opacity-75" style="font-size: 0.7rem;">记录学习与分享</small>
+            </div>
+        </a>
+
+        <!-- 移动端汉堡按钮 -->
+        <button class="navbar-toggler border-0" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarContent"
+                aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- 导航内容 -->
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <!-- 导航链接 -->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">
+                        <i class="bi bi-house-door me-1"></i>首页
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'xhc_blog:pub' %}">
+                        <i class="bi bi-pencil-square me-1"></i>写博客
+                    </a>
+                </li>
+            </ul>
+
+            <!-- 搜索框 -->
+            <form class="d-flex me-3" role="search" action="{% url 'xhc_blog:search' %}" method="GET">
+                <div class="input-group input-group-sm">
+                    <input type="search" name="q" class="form-control search-input"
+                           placeholder="搜索文章..." aria-label="搜索"
+                           value="{{ search_query|default:'' }}">
+                    <button class="btn btn-outline-light" type="submit">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </div>
+            </form>
+
+            <!-- 用户区域 -->
+            <div class="d-flex align-items-center">
+                {% if user.is_authenticated %}
+                    <div class="dropdown">
+                        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="{% static 'image/xhc.jpeg.png' %}" alt="头像"
+                                 width="32" height="32" class="rounded-circle me-2">
+                            <span class="small">{{ user.username }}</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end shadow">
+                            <li>
+                                <a class="dropdown-item" href="{% url 'xhc_auth:logout' %}">
+                                    <i class="bi bi-box-arrow-right me-2"></i>退出登录
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                {% else %}
+                    <a href="{% url 'xhc_auth:login' %}" class="btn btn-outline-light btn-sm me-2">
+                        <i class="bi bi-box-arrow-in-right me-1"></i>登录
+                    </a>
+                    <a href="{% url 'xhc_auth:register' %}" class="btn btn-light btn-sm">
+                        <i class="bi bi-person-plus me-1"></i>注册
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- 主内容 -->
+<main class="container my-4">
+    <div class="content-wrapper">
+        {% block main %}{% endblock %}
+    </div>
+</main>
+
+<!-- 页脚 -->
+<footer class="site-footer mt-auto">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6 text-center text-md-start">
+                <span class="text-muted small">XHC的博客 &copy; 2024 - 2026</span>
+            </div>
+            <div class="col-md-6 text-center text-md-end">
+                <span class="text-muted small">Powered by Django 5.0</span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>xhc的个人博客</title>
+    <link rel="stylesheet" href="{% static 'bootstrap-5.3.0-alpha1-dist/css/bootstrap.min.css' %}">
+    <script src="{% static 'bootstrap-5.3.0-alpha1-dist/js/bootstrap.bundle.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'bootstrap-5.3.0-alpha1-dist/css/base.css' %}">
+</head>
+<body>
+
+<header class="p-3 text-white sticky-top mb-3" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-between">
+            <!-- Logo -->
+            <a href="/" class="d-flex align-items-center text-decoration-none">
+                <div class="position-relative">
+                    <img src="{% static 'image/logo.png' %}" alt="Logo" width="45" height="45" class="rounded-circle shadow">
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">新</span>
+                </div>
+                <div class="ms-3">
+                    <h1 class="h5 mb-0 text-white fw-bold">XHC的博客</h1>
+                    <small class="text-light opacity-75">fgo攻略</small>
+                </div>
+            </a>
+
+            <!-- 导航（靠左） -->
+            <div class="nav-scroller py-1">
+                <nav class="nav d-flex justify-content-start">
+                    <a class="nav-link text-white px-3 py-2 rounded-pill mx-1" href="#">
+                        <i class="bi bi-house-fill me-2"></i>首页
+                    </a>
+                    <a class="nav-link text-white px-3 py-2 rounded-pill mx-1 bg-primary" href="#">
+                        <i class="bi bi-pencil-square me-2"></i>写博客
+                    </a>
+                </nav>
+            </div>
+
+            <!-- 用户区域 -->
+            <div class="d-flex align-items-center">
+                <!-- 搜索栏 -->
+                <div class="position-relative me-3">
+                    <input type="text"
+                           class="form-control form-control-sm"
+                           placeholder="搜索文章..."
+                           style="width: 160px; background-color: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white;">
+                    <i class="bi bi-search position-absolute end-0 top-50 translate-middle-y me-2 text-white-50"></i>
+                </div>
+
+                <button class="btn btn-light btn-sm me-2">
+                    <i class="bi bi-box-arrow-in-right me-1"></i> 登录
+                </button>
+                <button class="btn btn-warning btn-sm">
+                    <i class="bi bi-star-fill me-1"></i> 免费注册
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+<main class="container bg-white p-4 p-md-5 rounded-4 shadow-lg border border-light">
+    <!-- 标题 -->
+    <div class="mb-4 m-auto">
+        <h1 class="display-6 fw-bold mb-3 text-dark border-bottom pb-3">
+            📝 请登录
+        </h1>
+        <form action="" method="post">
+            <div class="mb-3">
+                <label>邮箱</label>
+                <input type="email" name="email" class="form-control" placeholder="请输入邮箱">
+            </div>
+            <div class="mb-3">
+                <label>密码</label>
+                <input type="password" name="password" class="form-control" placeholder="请输入密码">
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="remember" value="1" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                    记住我
+                </label>
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-primary w-100">登录</button>
+            </div>
+        </form>
+
+    </div>
+</main>
+</body>
+</html>

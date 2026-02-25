@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>xhc的个人博客</title>
+    <link rel="stylesheet" href="{% static 'bootstrap-5.3.0-alpha1-dist/css/bootstrap.min.css' %}">
+    <script src="{% static 'bootstrap-5.3.0-alpha1-dist/js/bootstrap.bundle.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'bootstrap-5.3.0-alpha1-dist/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'wangeditor/style.css' %}">
+    <script src="{% static 'wangeditor/index.js' %}"></script>
+    <script src="{% static 'js/pub.js' %}"></script>
+    <style>
+        #editor—wrapper {
+            border: 1px solid #ccc;
+            z-index: 100; /* 按需定义 */
+        }
+        #toolbar-container {
+            border-bottom: 1px solid #ccc;
+        }
+        #editor-container {
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+<header class="p-3 text-white sticky-top mb-3" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-between">
+            <!-- Logo -->
+            <a href="/" class="d-flex align-items-center text-decoration-none">
+                <div class="position-relative">
+                    <img src="{% static 'image/logo.png' %}" alt="Logo" width="45" height="45" class="rounded-circle shadow">
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">新</span>
+                </div>
+                <div class="ms-3">
+                    <h1 class="h5 mb-0 text-white fw-bold">XHC的博客</h1>
+                    <small class="text-light opacity-75">fgo攻略</small>
+                </div>
+            </a>
+
+            <!-- 导航（靠左） -->
+            <div class="nav-scroller py-1">
+                <nav class="nav d-flex justify-content-start">
+                    <a class="nav-link text-white px-3 py-2 rounded-pill mx-1" href="#">
+                        <i class="bi bi-house-fill me-2"></i>首页
+                    </a>
+                    <a class="nav-link text-white px-3 py-2 rounded-pill mx-1 bg-primary" href="#">
+                        <i class="bi bi-pencil-square me-2"></i>写博客
+                    </a>
+                </nav>
+            </div>
+
+            <!-- 用户区域 -->
+            <div class="d-flex align-items-center">
+                <!-- 搜索栏 -->
+                <div class="position-relative me-3">
+                    <input type="text"
+                           class="form-control form-control-sm"
+                           placeholder="搜索文章..."
+                           style="width: 160px; background-color: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white;">
+                    <i class="bi bi-search position-absolute end-0 top-50 translate-middle-y me-2 text-white-50"></i>
+                </div>
+
+                <button class="btn btn-light btn-sm me-2">
+                    <i class="bi bi-box-arrow-in-right me-1"></i> 登录
+                </button>
+                <button class="btn btn-warning btn-sm">
+                    <i class="bi bi-star-fill me-1"></i> 免费注册
+                </button>
+            </div>
+        </div>
+    </div>
+</header><main class="container bg-white p-3 rounded">
+    <h1>发布博客</h1>
+    <div class="mt-3">
+        <form action="" method="POST">
+            <div class="mb-3">
+                <label class="form-label">标题</label>
+                <input type="text" name="title" class="form-control">
+            </div>
+
+        <div class="mb-3">
+            <label class="form-label">分类</label>
+            <select name="category" class="form-select">
+                <option value="1">FGO国服</option>
+                <option value="2">FGO日服</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">内容</label>
+            <div id="editor—wrapper">
+                <div id="toolbar-container"><!-- 工具栏 --></div>
+                <div id="editor-container"><!-- 编辑器 --></div>
+            </div>
+        </div>
+            <div class="mb-3 text-end">
+                <button class="btn btn-primary">发布</button>
+            </div>
+        </form>
+    </div>
+</main>
+</body>
+</html>

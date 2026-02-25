@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block title %}注册 - XHC的博客{% endblock %}
+{% block head %}
+    <script src="{% static 'jquery/jquery-3.7.1.min.js' %}"></script>
+    <script src="{% static 'js/register.js' %}"></script>
+{% endblock %}
+
+{% block main %}
+<div class="row justify-content-center">
+    <div class="col-md-5 col-lg-4">
+        <div class="text-center mb-4">
+            <img src="{% static 'image/logo.png' %}" alt="Logo" width="60" height="60" class="rounded-circle shadow mb-3">
+            <h3 class="fw-bold">创建账号</h3>
+            <p class="text-muted small">注册成为博客用户</p>
+        </div>
+
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4">
+                <form action="" method="post">
+                    {% csrf_token %}
+
+                    {% if form.errors %}
+                    <div class="alert alert-danger alert-sm py-2 small">
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <div>{{ error }}</div>
+                            {% endfor %}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    <div class="mb-3">
+                        <label class="form-label small fw-medium">用户名</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light border-end-0">
+                                <i class="bi bi-person text-muted"></i>
+                            </span>
+                            <input type="text" name="username" class="form-control border-start-0"
+                                   placeholder="请输入用户名" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label small fw-medium">邮箱</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light border-end-0">
+                                <i class="bi bi-envelope text-muted"></i>
+                            </span>
+                            <input type="email" name="email" class="form-control border-start-0"
+                                   placeholder="请输入邮箱" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label small fw-medium">验证码</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light border-end-0">
+                                <i class="bi bi-shield-check text-muted"></i>
+                            </span>
+                            <input type="text" name="captcha" class="form-control border-start-0"
+                                   placeholder="请输入验证码" required>
+                            <button class="btn btn-outline-primary" type="button" id="captcha-btn">获取验证码</button>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label small fw-medium">密码</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light border-end-0">
+                                <i class="bi bi-lock text-muted"></i>
+                            </span>
+                            <input type="password" name="password" class="form-control border-start-0"
+                                   placeholder="请输入密码 (至少6位)" required>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary w-100 mb-3" type="submit">立即注册</button>
+
+                    <div class="text-center">
+                        <span class="text-muted small">已有账号？</span>
+                        <a href="{% url 'xhc_auth:login' %}" class="small text-decoration-none">去登录</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

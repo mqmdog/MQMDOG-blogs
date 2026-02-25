@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>xhc的个人博客</title>
+    <link rel="stylesheet" href="{% static 'bootstrap-5.3.0-alpha1-dist/css/bootstrap.min.css' %}">
+    <script src="{% static 'bootstrap-5.3.0-alpha1-dist/js/bootstrap.bundle.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'bootstrap-5.3.0-alpha1-dist/css/base.css' %}">
+</head>
+<body>
+<header class="p-3 text-white sticky-top mb-3" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-between">
+            <!-- Logo -->
+            <a href="/" class="d-flex align-items-center text-decoration-none">
+                <div class="position-relative">
+                    <img src="{% static 'image/logo.png' %}" alt="Logo" width="45" height="45" class="rounded-circle shadow">
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">新</span>
+                </div>
+                <div class="ms-3">
+                    <h1 class="h5 mb-0 text-white fw-bold">XHC的博客</h1>
+                    <small class="text-light opacity-75">fgo攻略</small>
+                </div>
+            </a>
+
+            <!-- 导航（靠左） -->
+            <div class="nav-scroller py-1">
+                <nav class="nav d-flex justify-content-start">
+                    <a class="nav-link text-white px-3 py-2 rounded-pill mx-1" href="#">
+                        <i class="bi bi-house-fill me-2"></i>首页
+                    </a>
+                    <a class="nav-link text-white px-3 py-2 rounded-pill mx-1 bg-primary" href="#">
+                        <i class="bi bi-pencil-square me-2"></i>写博客
+                    </a>
+                </nav>
+            </div>
+
+            <!-- 用户区域 -->
+            <div class="d-flex align-items-center">
+                <!-- 搜索栏 -->
+                <div class="position-relative me-3">
+                    <input type="text"
+                           class="form-control form-control-sm"
+                           placeholder="搜索文章..."
+                           style="width: 160px; background-color: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white;">
+                    <i class="bi bi-search position-absolute end-0 top-50 translate-middle-y me-2 text-white-50"></i>
+                </div>
+
+                <button class="btn btn-light btn-sm me-2">
+                    <i class="bi bi-box-arrow-in-right me-1"></i> 登录
+                </button>
+                <button class="btn btn-warning btn-sm">
+                    <i class="bi bi-star-fill me-1"></i> 免费注册
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+<main class="container bg-white p-4 p-lg-5 rounded-4 shadow-lg" style="
+    background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+">
+    <!-- 文章标题 -->
+    <div class="mb-4">
+        <h1 class="h2 fw-bold mb-3 text-dark" style="
+            position: relative;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f2f5;
+        ">
+            <span style="
+                display: inline-block;
+                background: linear-gradient(90deg, #1e40af, #3b82f6);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            ">
+                幕间物语博客详情
+            </span>
+        </h1>
+    </div>
+
+    <!-- 作者信息 -->
+    <div class="mb-4 pb-3 d-flex align-items-center" style="
+        border-bottom: 1px solid #f0f2f5;
+    ">
+        <div class="position-relative me-3">
+            <img src="{% static 'image/xhc.jpeg.png' %}" alt=''
+                 width="48" height="48"
+                 class="rounded-circle border border-3 border-white shadow">
+        </div>
+        <div class="text-muted">
+            <div class="fw-medium text-dark">XHC的博客</div>
+            <div class="small">
+                于 <span class="fw-medium text-dark">2024年3月15日 11:28</span> 发布
+            </div>
+        </div>
+    </div>
+
+    <!-- 文章内容 -->
+    <div class="py-4 px-3 mb-4" style="
+        background: linear-gradient(180deg, #f9fafb 0%, #ffffff 100%);
+        border-radius: 12px;
+        border: 1px solid #f0f2f5;
+        min-height: 200px;
+    ">
+        <div class="text-secondary lh-lg">
+            这是博客详情
+        </div>
+    </div>
+
+    <!-- 评论区域 -->
+    <div class="mt-4 pt-4" style="border-top: 1px solid #f0f2f5;">
+        <!-- 评论标题 -->
+        <div class="mb-4">
+            <h3 class="h4 fw-bold text-dark mb-0">评论10条</h3>
+        </div>
+
+        <!-- 评论表单 -->
+        <div class="mb-4 p-4 rounded-3" style="
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+        ">
+            <form action=" " method="POST">
+                <div class="mb-3">
+                    <input type="text" class="form-control border-0 shadow-sm"
+                           style="height: 48px; background: white;"
+                           name="author" placeholder="请输入评论" required>
+                </div>
+                <div class="text-end mt-2">
+                    <button type="button" class="btn btn-primary px-4 shadow-sm"
+                            style="height: 40px; min-width: 100px;">
+                        提交评论
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- 评论列表 -->
+        <div class="mt-4">
+            <div class="comment-list">
+                <!-- 评论项1 -->
+                <div class="mb-3 p-3 rounded-3" style="
+                    background: linear-gradient(180deg, #ffffff 0%, #f9fafb 100%);
+                    border: 1px solid #f0f2f5;
+                ">
+                    <!-- 评论头部 -->
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <div class="d-flex align-items-center">
+                            <img src="{% static 'image/xhc.jpeg.png' %}"
+                                 class="rounded-circle me-2 border border-2 border-white"
+                                 width="40" height="40" alt="">
+                            <span class="fw-medium text-dark">雷冥</span>
+                        </div>
+                        <div class="text-muted small">2024年3月29日 11:28</div>
+                    </div>
+                    <!-- 评论内容 -->
+                    <div class="mt-2 text-secondary">
+                        这是评论的内容
+                    </div>
+                </div>
+
+                <!-- 评论项2 -->
+                <div class="mb-3 p-3 rounded-3" style="
+                    background: linear-gradient(180deg, #ffffff 0%, #f9fafb 100%);
+                    border: 1px solid #f0f2f5;
+                ">
+                    <!-- 评论头部 -->
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <div class="d-flex align-items-center">
+                            <img src="{% static 'image/xhc.jpeg.png' %}"
+                                 class="rounded-circle me-2 border border-2 border-white"
+                                 width="40" height="40" alt="">
+                            <span class="fw-medium text-dark">雷夫</span>
+                        </div>
+                        <div class="text-muted small">2024年3月29日 11:28</div>
+                    </div>
+                    <!-- 评论内容 -->
+                    <div class="mt-2 text-secondary">
+                        这是评论的内容
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% block title %}{{ blog.title }} - XHC的博客{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'highlight/styles/github-dark-dimmed.min.css' %}">
+    <script src="{% static 'highlight/highlight.min.js' %}"></script>
+{% endblock %}
+
+{% block main %}
+<!-- 文章头部 -->
+<article class="blog-article">
+    <header class="mb-4 pb-3 border-bottom">
+        <h1 class="fw-bold mb-3">{{ blog.title }}</h1>
+        <div class="d-flex flex-wrap align-items-center text-muted small gap-3">
+            <div class="d-flex align-items-center">
+                <img src="{% static 'image/xhc.jpeg.png' %}" class="rounded-circle me-2" width="30" height="30" alt="">
+                <span class="fw-medium text-dark">{{ blog.author.username }}</span>
+            </div>
+            <span>
+                <i class="bi bi-clock me-1"></i>{{ blog.pub_time|date:"Y年m月d日 H:i" }}
+            </span>
+            <span>
+                <i class="bi bi-tag me-1"></i>{{ blog.category.name }}
+            </span>
+            <span>
+                <i class="bi bi-eye me-1"></i>{{ blog.view_count }} 次浏览
+            </span>
+        </div>
+    </header>
+
+    <!-- 文章正文 -->
+    <div class="article-content py-3">
+        {{ blog.content|safe }}
+    </div>
+</article>
+
+<!-- 评论区域 -->
+<section class="mt-5 pt-4 border-top">
+    <h4 class="fw-bold mb-4">
+        <i class="bi bi-chat-dots me-2 text-primary"></i>评论
+        <span class="badge bg-primary rounded-pill ms-1">{{ blog.comments.all|length }}</span>
+    </h4>
+
+    <!-- 评论表单 -->
+    {% if user.is_authenticated %}
+    <div class="card border-0 bg-light mb-4">
+        <div class="card-body p-3">
+            <form action="{% url 'xhc_blog:pub_comment' %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="blog_id" value="{{ blog.id }}">
+                <div class="d-flex align-items-start gap-3">
+                    <img src="{% static 'image/xhc.jpeg.png' %}" class="rounded-circle mt-1" width="36" height="36" alt="">
+                    <div class="flex-grow-1">
+                        <textarea class="form-control border-0 shadow-sm" name="content"
+                                  rows="3" placeholder="写下你的评论..." required
+                                  style="resize: none;"></textarea>
+                        <div class="text-end mt-2">
+                            <button type="submit" class="btn btn-primary btn-sm px-4">
+                                <i class="bi bi-send me-1"></i>提交评论
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% else %}
+    <div class="alert alert-light border text-center mb-4">
+        <a href="{% url 'xhc_auth:login' %}" class="text-decoration-none">登录</a> 后即可发表评论
+    </div>
+    {% endif %}
+
+    <!-- 评论列表 -->
+    <div class="comment-list">
+        {% for comment in blog.comments.all %}
+        <div class="d-flex gap-3 mb-3 p-3 rounded-3 comment-item">
+            <img src="{% static 'image/xhc.jpeg.png' %}" class="rounded-circle" width="36" height="36" alt="">
+            <div class="flex-grow-1">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <span class="fw-medium small">{{ comment.author.username }}</span>
+                    <span class="text-muted" style="font-size: 0.75rem;">{{ comment.pub_time|date:"Y/m/d H:i" }}</span>
+                </div>
+                <p class="mb-0 text-secondary small">{{ comment.content }}</p>
+            </div>
+        </div>
+        {% empty %}
+        <div class="text-center text-muted py-4">
+            <i class="bi bi-chat display-4 opacity-25"></i>
+            <p class="mt-2">暂无评论，快来抢沙发！</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<script>hljs.highlightAll();</script>
+{% endblock %}

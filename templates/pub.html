@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block title %}发布博客 - XHC的博客{% endblock %}
+{% block head %}
+    <script src="{% static 'jquery/jquery-3.7.1.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'wangeditor/style.css' %}">
+    <script src="{% static 'wangeditor/index.js' %}"></script>
+    <script src="{% static 'js/pub.js' %}"></script>
+    <style>
+        #editor-wrapper {
+            border: 1px solid #dee2e6;
+            border-radius: 0.375rem;
+            overflow: hidden;
+        }
+        #toolbar-container {
+            border-bottom: 1px solid #dee2e6;
+            background: #f8f9fa;
+        }
+        #editor-container {
+            height: 500px;
+        }
+    </style>
+{% endblock %}
+
+{% block main %}
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <h3 class="fw-bold mb-4">
+            <i class="bi bi-pencil-square me-2 text-primary"></i>发布博客
+        </h3>
+
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label class="form-label fw-medium">标题</label>
+                <input type="text" name="title" class="form-control form-control-lg"
+                       placeholder="请输入文章标题" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-medium">分类</label>
+                <select name="category" class="form-select" id="category-select">
+                    {% for category in categories %}
+                        <option value="{{ category.id }}">{{ category.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-medium">内容</label>
+                <div id="editor-wrapper">
+                    <div id="toolbar-container"></div>
+                    <div id="editor-container"></div>
+                </div>
+            </div>
+
+            <div class="text-end mt-4">
+                <a href="/" class="btn btn-outline-secondary me-2">取消</a>
+                <button class="btn btn-primary px-4" id="submit-btn">
+                    <i class="bi bi-send me-1"></i>发布文章
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
